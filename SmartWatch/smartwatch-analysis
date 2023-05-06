@@ -1,0 +1,16 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+
+data = pd.read_csv("data2.csv")
+
+#convert dates which is an object to datetime
+
+data["update_time"] = pd.to_datetime(data["update_time"], format="%Y-%m-%d")
+
+print(data.info())
+
+
+
