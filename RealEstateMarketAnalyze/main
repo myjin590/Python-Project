@@ -1,0 +1,290 @@
+
+import os
+import os.path
+
+city = ['Mississauga', 'Richmond Hill', 'Aurora', 'Markham', 'Vaughan', 'Stouffville', 'New Market',
+        'East Gwillimbury']
+
+#fix issues
+# 1. City shouldn't be spaced. (ex. New Market -> it would be saved into two separated columns)
+# 2. New Market is not saved.
+# 3. 
+
+def extract_from_pdf():
+    # open result{}.txt -> check if the file is about
+    # 1. Detached
+    # 2. Town House
+    # 3. Semi-Detached
+    # 4. Cndo
+    # Then send data to save function for distinguishing the data by city
+    
+    i = 0
+    while i <4:
+        #change the month
+        filename = "Aprresult%d.txt" % i
+        with open(filename, "r") as f:
+            data = f.readlines()
+        for line in data:
+            if 'Semi-Detached' in line:
+                saveSemiDetached(data)
+            elif 'Detached' in line:
+                saveDetached(data)
+            elif 'Condo' in line:
+                saveCondo(data)
+            elif 'Townhouse' in line:
+                saveTownHouse(data)
+        i = i+1
+
+def saveDetached(data):
+# open D-city
+    houseType = "D"
+
+    # change the month before you run the program
+    month = 'April'
+
+    for line in data:
+        if 'Mississauga' in line:
+            saveToMississagua(line, houseType, month)
+        
+        elif 'City of Toronto' in line:
+            saveToTorontoW(line, houseType, month)
+        
+        elif 'Toronto West' in line:
+            saveToTorontoW(line, houseType, month)
+
+        elif 'Toronto Central' in line:
+            saveToTorontoC(line, houseType, month)
+
+        elif 'Toronto East' in line:
+            saveToTorontoE(line, houseType, month)
+
+        elif 'Richmond Hill' in line:
+            saveToRichmondHill(line, houseType, month)
+
+        elif 'Aurora' in line:
+            saveToAurora(line, houseType, month)
+
+        elif 'Markham' in line:
+            saveToMarkham(line, houseType, month)
+
+        elif 'Vaughan' in line:
+            saveToVaughan(line, houseType, month)
+
+        elif 'Stouffville' in line:
+            saveToStoufville(line, houseType, month)
+
+        elif 'New Market' in line:
+            saveToNewMarket(line, houseType, month)
+
+        elif 'East Gwillimbury' in line:
+            saveToEG(line, houseType, month)
+       
+def saveSemiDetached(data):
+    houseType = "S"
+    # change the month before you run the program
+    month = 'April'
+
+    for line in data:
+        #if city[index] in line
+        if 'Mississauga' in line:
+            #filename = "D-Mississagua.txt"
+            saveToMississagua(line, houseType, month)
+
+        elif 'Toronto West' in line:
+            saveToTorontoW(line, houseType, month)
+
+        elif 'Toronto Central' in line:
+            saveToTorontoC(line, houseType, month)
+
+        elif 'Toronto East' in line:
+            saveToTorontoE(line, houseType, month)
+        
+        elif 'Richmond Hill' in line:
+            saveToRichmondHill(line, houseType, month)
+
+        elif 'Aurora' in line:
+            saveToAurora(line, houseType, month)
+
+        elif 'Markham' in line:
+            saveToMarkham(line, houseType, month)
+
+        elif 'Vaughan' in line:
+            saveToVaughan(line, houseType, month)
+
+        elif 'Stouffville' in line:
+            saveToStoufville(line, houseType, month)
+
+        elif 'New Market' in line:
+            saveToNewMarket(line, houseType, month)
+
+        elif 'East Gwillimbury' in line:
+            saveToEG(line, houseType, month)
+
+        
+
+def saveTownHouse(data):
+    houseType = "T"
+    # change the month before you run the program
+    month = 'April'
+
+    for line in data:
+        #if city[index] in line
+        if 'Mississauga' in line:
+            #filename = "D-Mississagua.txt"
+            saveToMississagua(line, houseType, month)
+        
+        elif 'City of Toronto' in line:
+            saveToTorontoW(line, houseType, month)
+        
+        elif 'Toronto West' in line:
+            saveToTorontoW(line, houseType, month)
+
+        elif 'Toronto Central' in line:
+            saveToTorontoC(line, houseType, month)
+
+        elif 'Toronto East' in line:
+            saveToTorontoE(line, houseType, month)
+        
+        elif 'Richmond Hill' in line:
+            saveToRichmondHill(line, houseType, month)
+
+        elif 'Aurora' in line:
+            saveToAurora(line, houseType, month)
+
+        elif 'Markham' in line:
+            saveToMarkham(line, houseType, month)
+
+        elif 'Vaughan' in line:
+            saveToVaughan(line, houseType, month)
+
+        elif 'Stouffville' in line:
+            saveToStoufville(line, houseType, month)
+
+        elif 'New Market' in line:
+            saveToNewMarket(line, houseType, month)
+
+        elif 'East Gwillimbury' in line:
+            saveToEG(line, houseType, month)
+
+def saveCondo(data):
+    houseType = "C"
+    # change the month before you run the program
+    month = 'April'
+
+    for line in data:
+        #if city[index] in line
+        if 'Mississauga' in line:
+            #filename = "D-Mississagua.txt"
+            saveToMississagua(line, houseType, month)
+
+        elif 'City of Toronto' in line:
+            saveToTorontoW(line, houseType, month)
+        
+        elif 'Toronto West' in line:
+            saveToTorontoW(line, houseType, month)
+
+        elif 'Toronto Central' in line:
+            saveToTorontoC(line, houseType, month)
+
+        elif 'Toronto East' in line:
+            saveToTorontoE(line, houseType, month)
+
+        elif 'Richmond Hill' in line:
+            saveToRichmondHill(line, houseType, month)
+
+        elif 'Aurora' in line:
+            saveToAurora(line, houseType, month)
+
+        elif 'Markham' in line:
+            saveToMarkham(line, houseType, month)
+
+        elif 'Vaughan' in line:
+            saveToVaughan(line, houseType, month)
+
+        elif 'Stouffville' in line:
+            saveToStoufville(line, houseType, month)
+
+        elif 'New Market' in line:
+            saveToNewMarket(line, houseType, month)
+
+        elif 'East Gwillimbury' in line:
+            saveToEG(line, houseType, month)
+
+
+#save the line of data to file by city
+
+def saveToMississagua(line, houseType, month):
+    
+    city = "Mississagua"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToRichmondHill(line, houseType, month):
+    city = "Richmond Hill"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToToronto(line, houseType, month):
+    city = "Toronto"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToAurora(line, houseType, month):
+    city = "Aurora"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToMarkham(line, houseType, month):
+    city = "Markham"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToVaughan(line, houseType, month):
+    city = "Vaughan"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToStoufville(line, houseType, month):
+    city = "Stouffville"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToNewMarket(line, houseType, month):
+    city = "New Market"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToEG(line, houseType, month):
+    city = "East Gwillimbury"
+    path = city+"/"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToTorontoW(line, houseType, month):
+    city = "Toronto"
+    path = city+"/Toronto West"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToTorontoC(line, houseType, month):
+    city = "Toronto"
+    path = city+"/Toronto Central"
+    writeToFile(line, path, houseType, city, month)
+
+def saveToTorontoE(line, houseType, month):
+    city = "Toronto"
+    path = city+"/Toronto East"
+    writeToFile(line, path, houseType, city, month)
+
+def writeToFile(line, path, houseType, city, month):
+    fullPath = path + houseType + "-" + city + '.txt'
+
+    if not os.path.exists(fullPath):
+      
+        f = open(path + houseType + "-" + city + '.txt', 'a+')
+        f.write("Month City Sales Dolloar-Volume AvgPrice Median-Price New-Listings Active-Listings Avg.SP/LP Avg.LDOM\n")
+        f.write(month + " " + line)
+    else:
+        f = open(path + houseType + "-" + city + '.txt', 'a+')
+        f.write(month + " " + line)
+        f.close()
+
+extract_from_pdf()
