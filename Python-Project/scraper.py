@@ -8,43 +8,59 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 #open saved list
-df = pd.read_csv("NYC.csv")
+df = pd.read_csv("Want to go.csv")
 
-#store url into list_link
+#store url && title into list
 list_link = df["URL"]
-#print(list_link)
+list_title = df["Title"]
+
 
 driver = webdriver.Firefox()
 category = ''
+title = ''
 page_num = 1
 categories = []
+titles = []
+res = []
 # Navigate to Url
-# Problem to solve : it can't read hotel link! why?? -> because it doesn't have classname DkEaL.
+# Problem to solve : it can't read 'hotel link. why?? -> because it doesn't have classname DkEaL.
+# Problem to solve : store title and category in Pair
+index = 0
 for l in list_link:
-    print("start loop")
     try:
            driver.get(l)
            if page_num == 1:
                 driver.implicitly_wait(10) 
-                #element = WebDriverWait(driver, 50).until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Coffee')]")))
-
-                #my_element = driver.find_elements_by_xpath("//span[text()='hotel']")
                 category = driver.find_element(By.CLASS_NAME, 'DkEaL ')
            else:
                time.sleep(2)
 
-    except NoSuchElementException:
-        print("No such element")
+    except:
+        pass
     
-    finally:
-        if(category != ''):
-            categories += category.text
-        else:
-            driver.refresh()
+#problem : it can't retreive category.text --> error ---> solved
+#problem : get NAME of the place and store it into list
+    if category:
+        try:
+            print(index)
+            categories += [category.text]
+            res.append((category.text, list_title[index]))
+            
+        except:
+            print("ERROR: No category")
+            pass
+    else:
+        pass
+    
+    index += 1
+    
     page_num =+ 1
-        
+#..
+#get needed result
 
-print(categories)
-#get category
-#print(category.text)
+print(res)
 
+# result = []
+# for i in categories:
+#     if i == "Coffee shop" or i == "Cafe":
+#         print(i)
